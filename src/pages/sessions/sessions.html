@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Sessions page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sessions</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+  <ion-content padding>
+    <ion-content padding>
+      <ion-searchbar
+        [(ngModel)]="searchInput"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="updateAffichage()"
+        (ionCancel)="updateAffichage()">
+      </ion-searchbar>
+
+
+    <ion-list >
+      <ion-item-group  *ngFor="let pool of sessions" >
+        <ion-item-divider sticky>
+          <ion-label>
+            Début: {{pool.hours.hourStart}}h{{pool.hours.minStart}}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-sliding  *ngFor="let session of pool.sessions">
+          <div ion-item (click)="openPageSession(session.id)" class="{{getColor(session)}}">
+            <h3>{{ session.title }}</h3>
+            <p>
+              fin: {{session.hours.hourEnd}}h{{session.hours.minEnd}}:
+            </p>
+          </div>
+        </ion-item-sliding>
+      </ion-item-group>
+    </ion-list>
+</ion-content>
+
+
